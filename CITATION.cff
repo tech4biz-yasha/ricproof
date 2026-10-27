@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use ricproof, please cite it as below."
+type: software
+title: "ricproof: RIC control-loop evidence conformance suite"
+authors:
+  - family-names: Khandelwal
+    given-names: Yasha
+    email: yasha.khandelwal@tech4biz.io
+version: 0.2.0
+date-released: 2026-10-27
+license: MIT
+repository-code: https://github.com/tech4biz-yasha/ricproof

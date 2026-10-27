@@ -1,0 +1,29 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7
+        ports: ["6390:6379"]
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 3s --health-retries 10
+    strategy:
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install "agent-memory-integrity @ git+https://github.com/tech4biz-yasha/agent-memory-integrity@e7fef1819e98b22345c94242bfa74e44afd3ff9c"
+      - run: pip install redis==4.3.6 && pip install ricsdl==3.1.2 --no-deps
+      - run: pip install -e . pytest ruff
+      - run: ruff check .
+      - run: pytest -q
+        env:
+          RICPROOF_REDIS_URI: redis://localhost:6390
+      - run: ricproof --target oran-sc-sdl --json /tmp/scorecard.json
+        env:
+          RICPROOF_REDIS_URI: redis://localhost:6390

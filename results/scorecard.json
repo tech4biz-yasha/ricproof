@@ -1,0 +1,195 @@
+{
+  "suite": "ricproof",
+  "version": "0.2.0",
+  "method": "agmi at-rest edits T1 to T10, verdict words per draft-khandelwal-bmwg-agent-memory-integrity",
+  "date": "2026-10-27",
+  "platform": "Darwin 24.6.0 Python 3.12.7",
+  "attacks": [
+    {
+      "name": "tamper",
+      "version": 1,
+      "description": "Alter the payload of a stored entry without touching its links."
+    },
+    {
+      "name": "truncate",
+      "version": 1,
+      "description": "Remove the most recent entries from the tail of the store."
+    },
+    {
+      "name": "delete_middle",
+      "version": 1,
+      "description": "Remove one interior entry, leaving a gap in the sequence."
+    },
+    {
+      "name": "reorder",
+      "version": 1,
+      "description": "Exchange two entries so events appear in the wrong order."
+    },
+    {
+      "name": "forge",
+      "version": 1,
+      "description": "Append a fabricated entry crafted to look authentic."
+    },
+    {
+      "name": "cross_replay",
+      "version": 1,
+      "description": "Replay a genuine record from another context onto this one, keeping the victim's identity."
+    },
+    {
+      "name": "rollback_replay",
+      "version": 1,
+      "description": "Replay an older genuine record of this context over its newest, rolling state back."
+    },
+    {
+      "name": "metadata_tamper",
+      "version": 1,
+      "description": "Alter a record's owner/source/timestamp without changing its content."
+    },
+    {
+      "name": "snapshot_rollback",
+      "version": 1,
+      "description": "Restore an older complete copy of the store, taken before the newest genuine record was written."
+    },
+    {
+      "name": "erase_resurrect",
+      "version": 1,
+      "description": "Restore a copy of the store taken before the tool erased a record through its own API."
+    }
+  ],
+  "rows": [
+    {
+      "tool": "oran-sc-sdl",
+      "measured_on": "ricsdl 3.1.2 on Redis 7.4.12",
+      "detection_point": "read",
+      "cells": {
+        "tamper": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "truncate": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "delete_middle": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "reorder": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "forge": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "cross_replay": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "rollback_replay": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "metadata_tamper": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "snapshot_rollback": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "the older copy opened as current; the newest genuine record is gone without an error",
+          "attack_version": 1
+        },
+        "erase_resurrect": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "the restored copy opened as current; the record the store had erased is served again without an error",
+          "attack_version": 1
+        }
+      }
+    },
+    {
+      "tool": "nonrtric-a1pms-filestore",
+      "measured_on": "nonrtric-plt-a1policymanagementservice 2.13.0 (file store) with two OSC_2.1.0 A1 simulators",
+      "detection_point": "read",
+      "cells": {
+        "tamper": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "truncate": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "delete_middle": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "reorder": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "forge": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "cross_replay": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "rollback_replay": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "metadata_tamper": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "accepted silently",
+          "attack_version": 1
+        },
+        "snapshot_rollback": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "the older copy opened as current; the newest genuine record is gone without an error",
+          "attack_version": 1
+        },
+        "erase_resurrect": {
+          "status": "VULNERABLE",
+          "verdict": "accepted",
+          "detail": "the restored copy opened as current; the record the store had erased is served again without an error",
+          "attack_version": 1
+        }
+      }
+    }
+  ]
+}

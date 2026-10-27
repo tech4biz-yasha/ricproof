@@ -1,0 +1,22 @@
+# ricproof: the nonrtric-a1pms-filestore row on a laptop with Docker.
+# Two O-RAN SC A1 simulators (one per near-RT RIC) and the O-RAN SC A1PMS
+# 2.13.0 image with its file store on the host directory ./vardata.
+services:
+  ric1:
+    image: nexus3.o-ran-sc.org:10002/o-ran-sc/a1-simulator:2.8.1
+    container_name: ricproof-ric1
+    environment: {A1_VERSION: OSC_2.1.0, ALLOW_HTTP: "true"}
+    ports: ["8085:8085"]
+  ric2:
+    image: nexus3.o-ran-sc.org:10002/o-ran-sc/a1-simulator:2.8.1
+    container_name: ricproof-ric2
+    environment: {A1_VERSION: OSC_2.1.0, ALLOW_HTTP: "true"}
+    ports: ["8086:8085"]
+  a1pms:
+    image: nexus3.o-ran-sc.org:10002/o-ran-sc/nonrtric-plt-a1policymanagementservice:2.13.0
+    container_name: ricproof-a1pms
+    depends_on: [ric1, ric2]
+    ports: ["8081:8081"]
+    volumes:
+      - ./application_configuration.json:/opt/app/policy-agent/data/application_configuration.json:ro
+      - ./vardata:/var/policy-management-service

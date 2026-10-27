@@ -1,0 +1,9 @@
+{
+  "description": "ricproof: two OSC_2.1.0 A1 simulators",
+  "config": {
+    "ric": [
+      {"name": "ric1", "baseUrl": "http://ric1:8085/", "managedElementIds": ["me1"]},
+      {"name": "ric2", "baseUrl": "http://ric2:8085/", "managedElementIds": ["me2"]}
+    ]
+  }
+}

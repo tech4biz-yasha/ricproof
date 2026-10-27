@@ -1,0 +1,29 @@
+
+[T0 seeded through PUT /a1-policy/v2/policies]
+  A1PMS lists ['rp-000000', 'rp-000001', 'rp-000002']
+  near-RT RIC holds ['rp-000000', 'rp-000001', 'rp-000002']
+    rp-000000: A1PMS priorityLevel=1   RIC priorityLevel=1
+    rp-000001: A1PMS priorityLevel=2   RIC priorityLevel=2
+    rp-000002: A1PMS priorityLevel=3   RIC priorityLevel=3
+
+[T1 tamper: rp-000001 priorityLevel set to 99 in the file, service restarted]
+  A1PMS lists ['rp-000000', 'rp-000001', 'rp-000002']
+  near-RT RIC holds ['rp-000000', 'rp-000001', 'rp-000002']
+    rp-000000: A1PMS priorityLevel=1   RIC priorityLevel=1
+    rp-000001: A1PMS priorityLevel=99   RIC priorityLevel=99
+    rp-000002: A1PMS priorityLevel=3   RIC priorityLevel=3
+
+[T2 truncate: rp-000002.json deleted beneath the service, service restarted]
+  A1PMS lists ['rp-000000', 'rp-000001']
+  near-RT RIC holds ['rp-000000', 'rp-000001']
+    rp-000000: A1PMS priorityLevel=1   RIC priorityLevel=1
+    rp-000001: A1PMS priorityLevel=99   RIC priorityLevel=99
+
+[T5 forge: a policy file the service never wrote, service restarted]
+  A1PMS lists ['rp-000000', 'rp-000001', 'rp-000002']
+  near-RT RIC holds ['rp-000000', 'rp-000001', 'rp-000002']
+    rp-000000: A1PMS priorityLevel=1   RIC priorityLevel=1
+    rp-000001: A1PMS priorityLevel=99   RIC priorityLevel=99
+    rp-000002: A1PMS priorityLevel=77   RIC priorityLevel=77
+
+verify() on the service's read path -> True (served without complaint)
