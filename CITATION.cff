@@ -6,7 +6,10 @@ authors:
   - family-names: Khandelwal
     given-names: Yasha
     email: yasha.khandelwal@tech4biz.io
+    affiliation: Tech4Biz Solutions
+    orcid: "https://orcid.org/0009-0005-2166-4951"
 version: 0.2.0
+doi: 10.5281/zenodo.23696820
 date-released: 2026-10-27
 license: MIT
 repository-code: https://github.com/tech4biz-yasha/ricproof

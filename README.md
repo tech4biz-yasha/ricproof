@@ -1,5 +1,7 @@
 # ricproof
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23696820.svg)](https://doi.org/10.5281/zenodo.23696820)
+
 Does an Open RAN RIC notice when its stores are tampered with?
 
 ricproof runs the ten agmi at-rest edits (T1 to T10) unchanged against the
