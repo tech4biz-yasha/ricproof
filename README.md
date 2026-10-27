@@ -26,6 +26,7 @@ the edit as genuine), **n/a** (not measured, reason in the cell), **error**
 | row | measured on | T1 tamper | T2 truncate | T3 delete middle | T4 reorder | T5 forge | T6 cross-context replay | T7 rollback replay | T8 metadata | T9 snapshot rollback | T10 erase resurrect |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | oran-sc-sdl | ricsdl 3.1.2 on Redis 7.4.12, detection point read | accepted | accepted | accepted | accepted | accepted | accepted | accepted | accepted | accepted | accepted |
+| nonrtric-a1pms-filestore | nonrtric-plt-a1policymanagementservice 2.13.0 (file store) with two OSC_2.1.0 A1 simulators, detection point read | accepted | accepted | accepted | accepted | accepted | accepted | accepted | accepted | accepted | accepted |
 
 The table is generated from `results/scorecard.json`, which is written by
 `ricproof --json results/scorecard.json`. Every cell in it carries the

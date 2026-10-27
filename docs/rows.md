@@ -22,13 +22,14 @@ Running it with Docker (deploy/a1pms):
    `curl -X PUT -H 'Content-Type: application/json' --data-binary @policy-type-1.json http://localhost:8085/a1-p/policytypes/1`
    and the same against `http://localhost:8086/a1-p/policytypes/1`.
 3. Wait until `curl http://localhost:8081/a1-policy/v2/rics` shows both RICs
-   `"state":"AVAILABLE"` with `"policytype_ids":["1"]` (the service syncs
-   types on its own; under a minute).
+   `"state":"AVAILABLE"` with `"policytype_ids":["1"]`. If it shows
+   `"policytype_ids":[]`, the types were created after the service started:
+   run `./a1pms-ctl.sh restart` and check again.
 4. Export the RICPROOF_A1PMS_* variables as in the README and run the row.
 
 The vardata directory on the host is the service's file store; the
 container runs as uid 120957, so the directory must be writable by it
-(on Docker Desktop bind mounts normally are).
+(it was on Docker Desktop for Mac in the measured run).
 
 ## aimlfw-mme-s3 (next; code facts checked, no adapter yet)
 
